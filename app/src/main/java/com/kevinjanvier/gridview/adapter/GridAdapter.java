@@ -18,7 +18,7 @@ import com.kevinjanvier.gridview.model.GridModel;
 import java.util.List;
 
 
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.RecyclerViewHolders> {
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     private List<GridModel> itemList;
     private Context context;
@@ -29,17 +29,17 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.RecyclerViewHo
     }
 
     @Override
-    public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, null);
-        RecyclerViewHolders rcv = new RecyclerViewHolders(layoutView);
+        ViewHolder rcv = new ViewHolder(layoutView);
         return rcv;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolders holder, int position) {
-        holder.countryName.setText(itemList.get(position).getName());
-        holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.personName.setText(itemList.get(position).getName());
+        holder.PersonPhoto.setImageResource(itemList.get(position).getPhoto());
     }
 
     @Override
@@ -47,16 +47,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.RecyclerViewHo
         return this.itemList.size();
     }
 
-    public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView countryName;
-        private ImageView countryPhoto;
+        private TextView personName;
+        private ImageView PersonPhoto;
 
-        public RecyclerViewHolders(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            countryName = (TextView)itemView.findViewById(R.id.country_name);
-            countryPhoto = (ImageView)itemView.findViewById(R.id.country_photo);
+            personName = (TextView)itemView.findViewById(R.id.country_name);
+            PersonPhoto = (ImageView)itemView.findViewById(R.id.country_photo);
         }
 
         @Override
